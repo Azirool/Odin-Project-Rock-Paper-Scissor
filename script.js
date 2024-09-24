@@ -18,12 +18,8 @@ function getHumanChoice() {
     return userChoice;
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-function playGame(humanChoice, computerChoice){
-
-   
+function playRound(humanChoice, computerChoice){
     switch(computerChoice) {
         case "Rock" :
             switch (humanChoice) {
@@ -70,7 +66,20 @@ function playGame(humanChoice, computerChoice){
         default:
             console.log("Error");
     }
-
 }
 
-playGame(humanSelection, computerSelection);
+function playGame(){
+    for (i=0;i<5;i++){
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
+    if(humanScore > computerScore){
+        console.log("Congrats! You win!");
+    } else {
+        console.log("Sorry, you lose");
+    }
+}
+
+playGame();
