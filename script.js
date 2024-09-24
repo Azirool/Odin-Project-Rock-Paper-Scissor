@@ -1,5 +1,6 @@
 let humanScore = 0;
 let computerScore = 0;
+let round = 0;
 
 function getComputerChoice(){
     let randomNum = Math.random();
@@ -11,13 +12,6 @@ function getComputerChoice(){
         return "Scissor";
     }
 }
-
-function getHumanChoice() {
-    let userChoice = prompt("What's your choice?");
-
-    return userChoice;
-}
-
 
 function playRound(humanChoice, computerChoice){
     switch(computerChoice) {
@@ -68,18 +62,22 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-function playGame(){
-    for (i=0;i<5;i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+function playGame(humanChoice){
 
-    if(humanScore > computerScore){
-        console.log("Congrats! You win!");
-    } else {
-        console.log("Sorry, you lose");
+    if (round >= 5) {
+        return;
+    } 
+
+    const humanSelection = humanChoice;
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+
+    round++;
+    if (round === 5){
+        if(humanScore > computerScore){
+            console.log("Congrats! You win!");
+        } else {
+            console.log("Sorry, you lose");
+        }
     }
 }
-
-playGame();
